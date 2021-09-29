@@ -1,0 +1,79 @@
+{% extends "layout.html" %}
+{% block body %}
+<section class="section section-lg flex flex-col h-screen ">
+  <div class="m-auto w-screen">
+    <div class="font-black text-4xl text-center">
+      <span class="text-gray-900">Login</span>
+    </div>
+    <div>
+      <div class="text-center flex justify-center">
+        <div class="form-group mt-10 text-gray-900">
+          <p class="border-t py-2">Email</p>
+          <input id="email" name="email" type="email"
+            class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+            placeholder="Yoru email">
+        </div>
+      </div>
+      <div class="text-center flex justify-center">
+        <div class="form-group text-gray-900">
+          <p class="py-2">Password</p>
+          <input id="password" type="password"
+            class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+            placeholder="Your password">
+        </div>
+      </div>
+      <div class="text-center flex justify-center">
+        <p id="error-log-pw" class="text-red-500 text-sm italic hidden"></p>
+      </div>
+      <div class="text-center flex justify-center">
+        <div class="mt-4">
+          <button class="shadow bg-green-500 hover:bg-green-600 focus:shadow-outline 
+              focus:outline-none text-white font-bold py-2 px-4 rounded duration-500" type="button"
+            onclick="doLoginUser();">
+            Login
+          </button>
+        </div>
+      </div>
+      <div class="text-center flex justify-center mt-2">
+        <small>Don't have account <a href="/register"><b>register here</b></a>.</small>
+      </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block script %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.4/axios.min.js"
+  integrity="sha512-lTLt+W7MrmDfKam+r3D2LURu0F47a3QaW5nF0c6Hl0JDZ57ruei+ovbg7BrZ+0bjVJ5YgzsAWE+RreERbpPE1g=="
+  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+  function doLoginUser() {
+    let email = document.getElementById('email').value;
+    let password = document.getElementById('password').value;
+    let error_logger = document.getElementById('error-log-pw');
+
+    var bodyFormData = new FormData();
+    bodyFormData.append('email', email);
+    bodyFormData.append('password', password);
+
+    axios({
+        method: "post",
+        url: window.location.origin + '/api/user-login',
+        data: bodyFormData,
+        headers: {
+          "Content-Type": "multipart/form-data"
+        },
+      })
+      .then(function (response) {
+        window.location.href = "/application";
+      })
+      .catch(function (error) {
+        if (error.response) {
+          if (error.response.status === 400) {
+            error_logger.classList.remove('hidden');
+            error_logger.innerHTML = error.response.data['message'];
+          }
+        }
+      });
+  }
+</script>
+{% endblock %}

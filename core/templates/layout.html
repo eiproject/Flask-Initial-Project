@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+
+<head>
+  {% block head %}
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ Name }}</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='css/tailwind.css')}}">
+    <link rel="icon" href="{{url_for('static',filename='img/favicon.ico')}}" type="image/x-icon">
+    <link rel="shortcut icon" type="image/x-icon" href="{{url_for('static',filename='img/favicon.ico')}}">
+  </head>
+  {% endblock %}
+</head>
+{% block header %}
+<header>
+  <nav class="bg-white py-4 mt-0 fixed w-full z-10 pin-t bg-opacity-90">
+    <div class="flex justify-center md:mt-4 md:mx-10 mx-0">
+      <div class="md:pt-0 md:content-center md:w-1/2 md:justify-end md:flex">
+        <div class="flex md:w-full justify-center md:justify-start text-gray-900">
+          <a class="text-gray-900 no-underline hover:text-gray-900 hover:no-underline" href="/">
+            <div class="flex items-center">
+              <img src="{{url_for('static',filename='img/logo.png')}}" width="40" />
+              <span class="text-2xl pl-2 font-bold hidden">
+                <span class="">Acala TTS
+                </span>
+            </div>
+          </a>
+        </div>
+        <ul class="list-reset flex justify-between flex-1 md:flex-none items-end">
+          <li class="">
+            <p class="text-gray-900 ml-4 py-2 border-b mr-4">
+              <a href="#">About</a>
+            </p>
+          </li>
+          {% if isLoggedIn %}
+          <li class="text-gray-900 ml-4 py-2 border-b mr-8 text-center">
+            <p class="text-xs">Balance: </p>
+            <p class="font-bold">
+              Rp {{ userBalance }}
+            </p>
+          </li>
+          {% endif %}
+          <li class="">
+            {% if isLoggedIn %}
+            <button class="shadow bg-red-500 hover:bg-red-600 focus:shadow-outline 
+              focus:outline-none text-white font-bold py-2 px-4 rounded duration-500" type="button"
+              onclick="window.location.href = '/logout'">
+              Logout
+            </button>
+            {% else %}
+            <button class="shadow bg-green-500 hover:bg-green-600 focus:shadow-outline 
+              focus:outline-none text-white font-bold py-2 px-4 rounded duration-500" type="button"
+              onclick="window.location.href = '/login'">
+              Login
+            </button>
+            {% endif %}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+{% endblock %}
+
+<body>
+  {% block body %}{% endblock %}
+</body>
+
+<footer class="flex justify-center items-center">
+  {% block footer %}
+  <span>&copy; Copyright 2021 <b><a href="https://github.com/eiproject">EI Project</a></b>.</span>
+  {% endblock %}
+</footer>
+
+</html>
+{% block script %}{% endblock %}
