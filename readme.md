@@ -19,3 +19,12 @@ Install initial config
 Copy css into static dir
 
     npx tailwindcss -o core/static/css/tailwind.css
+
+## To Run Flask Application
+
+    flask run
+
+Then, open your browser
+
+    http://127.0.0.1:5000
+
