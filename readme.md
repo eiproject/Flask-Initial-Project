@@ -4,7 +4,7 @@ Initial Projects
 
 ## To install Python Depedencies
 
-    python -r requirements.txt
+    pip install -r requirements.txt
 
 ## To install Tailwind Depedencies
 
@@ -27,4 +27,3 @@ Copy css into static dir
 Then, open your browser
 
     http://127.0.0.1:5000
-

@@ -1,5 +1,4 @@
 from . import app, jwt
-from .models import User
 from flask import jsonify
 
 # Custom JWT Response

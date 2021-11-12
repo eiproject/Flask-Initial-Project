@@ -1,9 +1,6 @@
-from . import app, jwt
-from .models import User
-
-from flask import Flask, request, render_template, redirect, jsonify
-
-from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
+from . import app
+from flask import request, jsonify
+from flask_jwt_extended import get_jwt_identity, jwt_required
 
 
 @app.route("/jwt-test", methods=["GET"])

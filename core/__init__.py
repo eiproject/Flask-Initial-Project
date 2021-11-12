@@ -1,11 +1,10 @@
 import logging
 import os
 
-from datetime import datetime, timedelta
-from flask import Flask, jsonify
+from datetime import timedelta
+from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
-from flask_login import LoginManager
 
 from flask_jwt_extended import JWTManager
 
@@ -42,9 +41,5 @@ app.config["JWT_ERROR_MESSAGE_KEY"] = "Error"
 jwt = JWTManager(app)
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
-
-# login_manager = LoginManager(app)
-# login_manager.login_view = 'login'
-# login_manager.login_message_category = 'info'
 
 from core import views, api_user, error_handler, jwt_test

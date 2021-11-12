@@ -2,7 +2,7 @@ from hashlib import sha256
 from http import HTTPStatus
 from flask import jsonify, request, session
 from . import app, db, BASE_DIR
-from .models import Users, Balance, Configuration
+from .models import Users
 
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
 

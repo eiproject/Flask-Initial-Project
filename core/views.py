@@ -1,8 +1,6 @@
 from . import app, jwt
 from .models import Users
-
 from flask import Flask, request, render_template, redirect, jsonify, session
-
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required, decode_token
 
 
