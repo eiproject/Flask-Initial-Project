@@ -21,7 +21,7 @@ def login_test():
     return render_template('login.html', Name="Login")
 
     
-@app.route("/reqister", methods=["GET"])
+@app.route("/register", methods=["GET"])
 def register_view():
     if 'jwt' in session:
         session_email = decode_token(session['jwt'])['email']
