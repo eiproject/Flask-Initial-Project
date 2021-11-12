@@ -5,8 +5,10 @@ __pycache__
 
 venv
 node_modules
-core/static/css/tailwind.css
 
+# tailwind
+core/static/css/tailwind.css
+tailwind.config.js
 
 *.zip
 *.pyc
